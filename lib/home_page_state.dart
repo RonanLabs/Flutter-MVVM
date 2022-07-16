@@ -15,7 +15,11 @@ class HomePageState extends State<HomePage> {
           ElevatedButton(
               onPressed: () =>
                   {MainRouteDelegate.of(context).push('/blog-list/123')},
-              child: const Text('Go to Blog List'))
+              child: const Text('Go to Blog List')),
+          ElevatedButton(
+              onPressed: () =>
+                  {MainRouteDelegate.of(context).push('/movie-list/123')},
+              child: const Text('Go to Movie List'))
         ],
       ),
     );

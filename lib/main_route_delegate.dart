@@ -11,23 +11,14 @@ class MainRouteDelegate extends RouterDelegate<String>
 
   static MainRouteDelegate of(BuildContext context) {
     final delegate = Router.of(context).routerDelegate;
-    assert(delegate is MainRouteDelegate, 'Delegate type must match');
     return delegate as MainRouteDelegate;
   }
-
-  MainRouteDelegate({
-    required this.onGenerateRoute,
-  });
-
-  final RouteFactory onGenerateRoute;
 
   @override
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   String? get currentConfiguration => _stack.isNotEmpty ? _stack.last : null;
-
-  List<String> get stack => List.unmodifiable(_stack);
 
   void push(String newRoute) {
     _stack.add(newRoute);
@@ -53,12 +44,7 @@ class MainRouteDelegate extends RouterDelegate<String>
   }
 
   bool _onPopPage(Route<dynamic> route, dynamic result) {
-    if (_stack.isNotEmpty) {
-      if (_stack.last == route.settings.name) {
-        _stack.remove(route.settings.name);
-        notifyListeners();
-      }
-    }
+    remove(route.settings.name!);
     return route.didPop(result);
   }
 
