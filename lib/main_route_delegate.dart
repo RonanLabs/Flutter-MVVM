@@ -1,17 +1,14 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_app/main_page.dart';
-import 'package:flutter_mvvm_app/main_route.dart';
+import 'package:flutter_mvvm_app/route_widget_ext.dart';
 
 class MainRouteDelegate extends RouterDelegate<String>
     with PopNavigatorRouterDelegateMixin<String>, ChangeNotifier {
   final _stack = <String>[];
 
   static MainRouteDelegate of(BuildContext context) {
-    final delegate = Router.of(context).routerDelegate;
-    return delegate as MainRouteDelegate;
+    return Router.of(context).routerDelegate as MainRouteDelegate;
   }
 
   @override
@@ -50,7 +47,7 @@ class MainRouteDelegate extends RouterDelegate<String>
 
   @override
   Widget build(BuildContext context) {
-    print('${describeIdentity(this)}.stack: $_stack');
+    debugPrint('${describeIdentity(this)}.stack: $_stack');
     return Navigator(
       key: navigatorKey,
       onPopPage: _onPopPage,
@@ -59,7 +56,7 @@ class MainRouteDelegate extends RouterDelegate<String>
           MainPage(
             key: ValueKey(name),
             name: name,
-            builder: (context) => getRouteWidget(name),
+            builder: (context) => name.createPage(),
           ),
       ],
     );
