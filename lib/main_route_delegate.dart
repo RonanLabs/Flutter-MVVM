@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_app/main_page.dart';
-import 'package:flutter_mvvm_app/route_widget_ext.dart';
+import 'package:flutter_mvvm_app/route_widget.dart';
 
 class MainRouteDelegate extends RouterDelegate<String>
     with PopNavigatorRouterDelegateMixin<String>, ChangeNotifier {

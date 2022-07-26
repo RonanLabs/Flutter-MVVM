@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_app/constants.dart';
+import 'package:flutter_mvvm_app/route_tag.dart';
 import 'package:flutter_mvvm_app/home_page.dart';
 import 'package:flutter_mvvm_app/main_route_delegate.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePageState extends State<HomePage> {
   @override
@@ -9,20 +10,20 @@ class HomePageState extends State<HomePage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(AppLocalizations.of(context)!.home),
       ),
       body: Column(
         children: [
           ElevatedButton(
               onPressed: () => {
                     MainRouteDelegate.of(context)
-                        .push('/${Constants.blogListPage}/123')
+                        .push('/${RouteTag.blogListPage}/123')
                   },
               child: const Text('Go to Blog List')),
           ElevatedButton(
               onPressed: () => {
                     MainRouteDelegate.of(context)
-                        .push('/${Constants.movieListPage}/123')
+                        .push('/${RouteTag.movieListPage}/123')
                   },
               child: const Text('Go to Movie List'))
         ],
